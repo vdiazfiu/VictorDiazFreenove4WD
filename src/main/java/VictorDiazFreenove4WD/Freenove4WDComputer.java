@@ -8,6 +8,7 @@ import edu.fiu.jit.GenericComponent;
 import edu.fiu.jit.SelfCheckCapable;
 
 
+
 public class Freenove4WDComputer implements GenericComponent {
 	
 	/**
@@ -196,7 +197,7 @@ public class Freenove4WDComputer implements GenericComponent {
 	@Override
 	public List<SelfCheckCapable> getSubComponents() {
 		List internalComponents = new ArrayList(); // create an empty list
-		Collections.addAll(internalComponents, FV4WDCamera, FV4WDWheels); // add all your sub components
+		Collections.addAll(internalComponents, FV4WDCamera, FV4WDWheels,FV4WDMotor,FV4WDWiFi,FV4WDBT); // add all your sub components
 		return internalComponents;
 	}
 
