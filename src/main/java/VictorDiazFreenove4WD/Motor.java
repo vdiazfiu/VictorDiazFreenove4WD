@@ -1,6 +1,9 @@
 package VictorDiazFreenove4WD;
 
-public class Motor extends Component {
+import edu.fiu.jit.SelfCheckCapable;
+import edu.fiu.jit.SelfCheckUtils;
+
+public class Motor extends Component implements SelfCheckCapable{
 /**
  * Motor Class Attributes
  */
@@ -49,6 +52,18 @@ public class Motor extends Component {
     	this.SpeedLevel = speed;
     	System.out.println("speed level set to : " + speed);
 	}
+
+@Override
+public String getComponentName() {
+	// TODO Auto-generated method stub
+	return "Motor";
+}
+
+@Override
+public boolean selfCheck() {
+	// TODO Auto-generated method stub
+	return SelfCheckUtils.randomCheck(0.3);
+}
 
     
     

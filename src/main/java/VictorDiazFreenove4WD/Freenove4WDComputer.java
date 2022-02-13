@@ -1,6 +1,14 @@
 package VictorDiazFreenove4WD;
 
-public class Freenove4WDComputer {
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import edu.fiu.jit.GenericComponent;
+import edu.fiu.jit.SelfCheckCapable;
+
+
+public class Freenove4WDComputer implements GenericComponent {
 	
 	/**
 	 * Freenove4WD Main Computer attributes. 
@@ -20,12 +28,12 @@ public class Freenove4WDComputer {
 	/**
 	 * Attributes from the components classes.
 	 */
-	private Camera FV4WDCamera = new Camera ("Camera1", "C1",1920,1080);
-	private Wheels FV4WDWheels = new Wheels ("Wheels1", "Whe1");
-	private Motor FV4WDMotor = new Motor("Motor1", "M1");
-	private WLAN FV4WDWiFi = new WLAN("Wlan1", "W1");
-	private BlueTooth FV4WDBT = new BlueTooth("BlueTooth", "B1");
-	private RemoteSmartDevice FV4WDRemoteDevice;
+	private Camera FV4WDCamera;
+	private Wheels FV4WDWheels;
+	private Motor FV4WDMotor;
+	private WLAN FV4WDWiFi;
+	private BlueTooth FV4WDBT;
+	//private RemoteSmartDevice FV4WDRemoteDevice;
 
 	/**
 	 * Class constructor. 
@@ -33,7 +41,12 @@ public class Freenove4WDComputer {
 	public Freenove4WDComputer(String Model,String SBPC) {
 	this.Model = Model;
 	this.SingleBoardPCModel = SBPC;
-		
+	Camera FV4WDCamera = new Camera ("Camera1", "C1",1920,1080);
+	Wheels FV4WDWheels = new Wheels ("Wheels1", "Whe1");
+	Motor FV4WDMotor = new Motor("Motor1", "M1");
+	WLAN FV4WDWiFi = new WLAN("Wlan1", "W1");
+	BlueTooth FV4WDBT = new BlueTooth("BlueTooth", "B1");
+	//RemoteSmartDevice FV4WDRemoteDevice = new RemoteSmartDevice("Iphone");	
 	}
 
 	/**
@@ -167,4 +180,25 @@ public class Freenove4WDComputer {
 		FV4WDCamera.TakePicture();
 		System.out.println ("Picture sent to Remote Device");
 	}
+
+	@Override
+	public String getComponentName() {
+		// TODO Auto-generated method stub
+		return "FreenoveComputer";
+	}
+
+	@Override
+	public boolean selfCheck() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public List<SelfCheckCapable> getSubComponents() {
+		List internalComponents = new ArrayList(); // create an empty list
+		Collections.addAll(internalComponents, FV4WDCamera, FV4WDWheels); // add all your sub components
+		return internalComponents;
+	}
+
+
 }

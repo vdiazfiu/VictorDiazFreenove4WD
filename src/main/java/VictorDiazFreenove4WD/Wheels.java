@@ -1,6 +1,9 @@
 package VictorDiazFreenove4WD;
 
-public class Wheels extends Component {
+import edu.fiu.jit.SelfCheckCapable;
+import edu.fiu.jit.SelfCheckUtils;
+
+public class Wheels extends Component implements SelfCheckCapable {
    
 	/**
 	 *  Main Class Attributes
@@ -36,6 +39,22 @@ public class Wheels extends Component {
 	public void SetRotationCenter() {
 		RotationDirection = "Center";
 		System.out.println("Wheels Rotated to " + RotationDirection );
+	}
+
+
+
+	@Override
+	public String getComponentName() {
+		// TODO Auto-generated method stub
+		return "Wheels";
+	}
+
+
+
+	@Override
+	public boolean selfCheck() {
+		// TODO Auto-generated method stub
+		return SelfCheckUtils.randomCheck(0.2);
 	}
 }
 

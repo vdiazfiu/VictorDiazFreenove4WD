@@ -1,6 +1,14 @@
 package VictorDiazFreenove4WD;
 
-public class RemoteSmartDevice {
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import edu.fiu.jit.GenericComponent;
+import edu.fiu.jit.SelfCheckCapable;
+import edu.fiu.jit.SelfCheckUtils;
+
+public class RemoteSmartDevice implements GenericComponent{
 
 	/**
 	 * Remote device attributes.
@@ -12,18 +20,23 @@ public class RemoteSmartDevice {
 	private String Encryption;
 	private boolean ConnectionStatus;
 	
+	
+	/**
+     * Computer Attribute
+     */
+    
+    private Freenove4WDComputer Freenove4WD ;
+    
+	
+	
 	/**
 	 * Class constructor
 	 */
     public RemoteSmartDevice(String Model) {
 	this.Model = Model;
+	Freenove4WD = new Freenove4WDComputer("4WD", "PI 3B+");
     }
 	
-    /**
-     * Computer Attribute
-     */
-    
-    private Freenove4WDComputer Freenove4WD = new Freenove4WDComputer("4WD", "PI 3B+");
     
 	/**
 	 * Method to discover Bluetooth devices
@@ -103,6 +116,25 @@ public class RemoteSmartDevice {
      public void MakeFreenoveSping (int speed) {
     	 Freenove4WD.Spin(speed);
      }
+
+	@Override
+	public String getComponentName() {
+		// TODO Auto-generated method stub
+		return "Remote Smart Device";
+	}
+
+	@Override
+	public boolean selfCheck() {
+		// TODO Auto-generated method stub
+		return SelfCheckUtils.randomCheck(0.1);
+	}
+
+	@Override
+	public List<SelfCheckCapable> getSubComponents() {
+		List internalComponents = new ArrayList(); // create an empty list
+		Collections.addAll(internalComponents, Freenove4WD); // add all your sub components
+		return internalComponents;
+	}
      
 
 }

@@ -1,7 +1,9 @@
 package VictorDiazFreenove4WD;
 
+import edu.fiu.jit.SelfCheckCapable;
+import edu.fiu.jit.SelfCheckUtils;
 
-public class Camera extends Component{
+public class Camera extends Component implements SelfCheckCapable{
 
 	/**
 	 * Camera class attributes, pixel resolution.
@@ -50,5 +52,17 @@ public class Camera extends Component{
 	public void TakePicture() {
 		System.out.println ("Click!"+ " Resolution of the picture = " + resolutionX + " " + resolutionY);
 		
+	}
+
+	@Override
+	public String getComponentName() {
+		// TODO Auto-generated method stub
+		return "Camera";
+	}
+
+	@Override
+	public boolean selfCheck() {
+		// TODO Auto-generated method stub
+		return SelfCheckUtils.randomCheck(0.23);
 	}
 }
